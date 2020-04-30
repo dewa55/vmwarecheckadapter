@@ -1,4 +1,7 @@
 import paramiko
+from selenium import webdriver
+import time
+
 def sshexecute ( hostname, username, password ):
     commands = [
     "pwd",
@@ -23,4 +26,12 @@ def sshexecute ( hostname, username, password ):
         err = stderr.read().decode()
         if err:
             print(err)
+
+def openbrowser ( url ):
+    driver = webdriver.Chrome()
+    driver.get(url)
+    time.sleep(10)
+    driver.close()
+
 sshexecute( hostname = '172.16.140.165', username = 'root', password = 'Combis123$')
+openbrowser( url = "http://facebook.com")
